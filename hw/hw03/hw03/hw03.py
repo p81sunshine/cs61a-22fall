@@ -67,8 +67,19 @@ def pingpong(n):
     True
     """
     "*** YOUR CODE HERE ***"
-    return find_nth_pingpong(n, 1)
+    def helper(ans, direction, index):
 
+        if index == n:
+            return ans
+        if index % 8 == 0 or num_eights(index) > 0:
+            return helper(-direction + ans, -direction, index+1)
+        else:
+            return helper(direction + ans, direction, index+1)
+
+
+    return helper(1,1,1)
+
+'''
 def find_nth_pingpong(n, direction):
     if n == 1:
         return 1
@@ -82,7 +93,7 @@ def find_nth_pingpong(n, direction):
     else:
         return find_nth_pingpong(n - 1, new_direction) - 1
         
-
+'''
 
 def next_larger_coin(coin):
     """Returns the next larger coin in order.
