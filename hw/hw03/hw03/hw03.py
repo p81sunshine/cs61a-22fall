@@ -149,6 +149,50 @@ def count_coins(change):
     True
     """
     "*** YOUR CODE HERE ***"
+    def max_change_coin (money):
+        if money >= 25:
+            return 25
+        elif money >= 10:
+            return 10
+        elif money >= 5:
+            return 5
+        elif money >= 1:
+            return 1
+        else:
+            return None
+
+    def imp(change, last_coin):
+
+        if change < 0:
+            return 0
+        if change == 0:
+            return 1
+        
+        count = 0
+
+        count += imp(change - last_coin, last_coin)
+        last_coin = next_smaller_coin(last_coin)
+        
+        if last_coin != None:
+            count += imp(change - last_coin, last_coin)
+            last_coin = next_smaller_coin(last_coin)
+        #5
+        if last_coin != None:
+            count += imp(change - last_coin, last_coin)
+            last_coin = next_smaller_coin(last_coin)
+        #1
+        if last_coin != None:
+            count += imp(change - last_coin, last_coin)
+            last_coin = next_smaller_coin(last_coin)
+            
+            
+
+        return count
+
+    return imp(change, 25)
+
+    
+
 
 
 anonymous = False  # Change to True if you would like to remain anonymous on the final leaderboard.
